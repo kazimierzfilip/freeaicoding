@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free AI Coding Tools - Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #f8fafc;
+            --bg-white: #ffffff;
+            --bg-header: #f1f5f9;
+            --bg-hover: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #0891b2;
+            --accent-amber: #d97706;
+            --accent-purple: #7c3aed;
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-page);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem 4rem;
+        }
+
+        header {
+            margin-bottom: 2.5rem;
+        }
+
+        .update-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.75rem;
+            background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+            border: 1px solid #bfdbfe;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-top: 2rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        .description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .notes {
+            padding: 1.25rem 1.5rem;
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .notes ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .notes li {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .notes li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 5px;
+            height: 5px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        .filters {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filters button {
+            padding: 0.5rem 1.1rem;
+            border: 1px solid var(--border-medium);
+            border-radius: 8px;
+            background: var(--bg-white);
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filters button:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            background: #eff6ff;
+        }
+
+        .filters button.active {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: white;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .table-wrapper {
+            background: var(--bg-white);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--bg-header);
+        }
+
+        th {
+            padding: 0.9rem 1.25rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        td {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: top;
+            font-size: 0.9rem;
+        }
+
+        tbody tr {
+            transition: background 0.15s ease;
+        }
+
+        tbody tr:hover {
+            background: var(--bg-hover);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tool-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .company {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .type-badges {
+            display: flex;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+        }
+
+        .type-badge {
+            display: inline-block;
+            padding: 0.2rem 0.55rem;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .type-standalone {
+            background: #ecfdf5;
+            color: #047857;
+            border: 1px solid #a7f3d0;
+        }
+
+        .type-plugin {
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fde68a;
+        }
+
+        .type-api {
+            background: #ede9fe;
+            color: #6d28d9;
+            border: 1px solid #ddd6fe;
+        }
+
+        .model-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+
+        .model-tag {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-header);
+            border: 1px solid var(--border-light);
+            border-radius: 5px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .limits,
+        .thoughts {
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            display: none;
+            background: var(--bg-white);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        @media (max-width: 1200px) {
+            .table-wrapper {
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .filters button {
+                padding: 0.4rem 0.9rem;
+                font-size: 0.8rem;
+            }
+
+            th,
+            td {
+                padding: 0.75rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Free AI Coding Tools</h1>
+            <p class="description">A comparison of free limits of AI-powered coding tools and my
+                personal thoughts after testing them.</p>
+
+            <div class="notes">
+                <ul>
+                    <li>Note that this is not a scientific comparison. Just a personal overview after trying each one during
+                        vibecoding web apps. Using free limits will be enough to have fun and make a couple of small projects or 1 bigger. Don't expect too much. When you try to conserve tokens, use smaller models and set reasoning to
+                        low/medium. I tested plugins in VS Code and standalone applications on Windows computer.
+                    </li>
+                    <li>Local development on a laptop with Intel Arc 140v with 16gb/18gb shared memory (32GB of RAM) was
+                        tested to be unreliable for agent coding tasks. I managed to run with llama.cpp:
+                        gemma-4-26B-A4B-it,
+                        gpt-oss-20b, Ornith-15-9B, Qwen3-8.9B-Distill at 5-12 tokens/s. It was too slow to handle tasks
+                        effectively. When reasoning was set to minimum it was able to do at least anything. Otherwise
+                        thinking could not end.</li>
+                    <li>I did not care about code completion as I was mainly vibecoding, but most of those tools can do it.</li>
+                </ul>
+            </div>
+
+            <label style="color: var(--text-secondary);">Valid for:  </label><div class="update-badge">September 2026</div>
+
+        </header>
+
+        <div class="filters">
+            <button class="active" data-filter="all">All Tools</button>
+            <button data-filter="standalone">Standalone</button>
+            <button data-filter="plugin">Plugins</button>
+        </div>
+
+        <div class="table-wrapper">
+            <table id="tools-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Company</th>
+                        <th>Type</th>
+                        <th>Models</th>
+                        <th>Free Limits</th>
+                        <th>My Thoughts</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+
+        <div id="no-results" class="no-results">
+            No tools found for this filter.
+        </div>
+    </div>
+
+    <script>
+        const tools = [
+            {
+                name: "Kiro",
+                company: "Amazon AWS",
+                type: ["standalone"],
+                features: ["Auto", "Claude Sonnet 4.5", "Claude Sonnet 4", "Claude Haiku 4.5", "deepseek-3.2", "minimax-m2.5", "minimax-m2.1", "glm-5", "qwen3-coder-next"],
+                limits: "~21 free requests with Auto mode (1x usage) before hitting monthly limit. Models have independent (higher/lower) usage ratio.",
+                thoughts: "Nice overall experience. Generous free limit. A successor to the Amazon Q"
+            },
+            {
+                name: "Devin (prev. Windsurf (prev. Codeium))",
+                company: "Cognition",
+                type: ["standalone"],
+                features: ["SWE 1.6 Slow"],
+                limits: "16 free requests until I hit the weekly(!) limit. There is a daily and a weekly limit. Does it end in a month? We will see",
+                thoughts: "This is a generous free limit. Model is not slow at all (contrary to the name)."
+            },
+            {
+                name: "Antigravity",
+                company: "Google",
+                type: ["plugin", "standalone"],
+                features: ["Gemini 3.8 Flash", "Gemini 3.7 Flash", "Gemini 3.6 Flash", "Gemini 3.1 Pro", "Claude Sonnet 4.6", "Claude Opus 4.6", "GPT-OSS 120B"],
+                limits: "~11 requests before hitting the weekly(!) limits. Free weekly limits separate for Google models and Claude/GPT models",
+                thoughts: "Nice to use, weekly limits, standalone version suprised me with automated browser testing. Google Antigravity VS Code plugin reportedly is to replace Gemini Code Assist plugin. And it's a good thing. It was laggy and hard/impossible to work with when I was testing it a while back."
+            },
+            {
+                name: "OpenCode",
+                company: "ANOMALY INNOVATIONS",
+                type: ["standalone"],
+                features: ["Nemotron 3 Ultra", "Muse Spark 1.3", "Muse Spark 1.2", "Nemotron 3.5 Lightning", "MiMo V2.5", "Big Pickle", "Ling 3.0 Flash Fin"],
+                limits: "8 requests and counting (MiMo and BigPickle)",
+                thoughts: "Used MiMo and BigPickle, smallest models I presume. A little slow, but quite capable."
+            },
+            {
+                name: "GitHub Copilot",
+                company: "GitHub / Microsoft",
+                type: ["plugin"],
+                features: ["Auto"],
+                limits: "~6 requests before hitting the monthly limit.",
+                thoughts: "I enjoy using it. Although free limits are not too big. I was considering bying 10$ subscription as it's the cheapest one (or sth with pay per tokens)."
+            },
+            {
+                name: "Codex",
+                company: "OpenAI",
+                type: ["plugin", "standalone"],
+                features: ["?"],
+                limits: "~6 requests before hitting the monthly limit. Free requests with ChatGpt Free plan.",
+                thoughts: "GPT Go plan allegedly has same limit as Free. GPT Plus is quite expensive but I was able to get first month free - currently testing. 5hour and weekly limits seem to be infinite with GPT-5.6 Sol - Light reasoning selected."
+            },
+            {
+                name: "Trae Code",
+                company: "ByteDance",
+                type: ["standalone"],
+                features: ["Auto", "GPT-5.4", "GPT-5.2", "Seed-2.1-Turbo", "MiniMax-M3", "MiniMax-M2.7", "Kimi-K2.5", "Gemini-3.1-Pro-Preview", "Gemini-3-Flash-Preview"],
+                limits: "~5 free requests but including 1 large refactor and 1 detailed codebase description",
+                thoughts: "I used Auto model select. I was happy with the results."
+            },
+            {
+                name: "Cursor",
+                company: "Anysphere",
+                type: ["standalone"],
+                features: ["Cursor Grok 4.6 Medium"],
+                limits: "Hit a monthly free limit with a single request. At first I couldn't even process a single request because of high load on servers.",
+                thoughts: "Previously when I tested, it was nice. But September 2026 - only Grok model is available for free and it's hard to process any request."
+            },
+            {
+                name: "JetBrains AI",
+                company: "JetBrains",
+                type: ["plugin"],
+                features: ["?"],
+                limits: "Never tested but apparently 30day free period.",
+                thoughts: "Works inside IntelliJ tools"
+            }
+        ];
+
+        function getTypeClass(type) {
+            const classes = {
+                'standalone': 'type-standalone',
+                'plugin': 'type-plugin',
+                'api': 'type-api'
+            };
+            return classes[type] || '';
+        }
+
+        function renderTable(filter = 'all') {
+            const tbody = document.getElementById('table-body');
+            const noResults = document.getElementById('no-results');
+
+            const filtered = filter === 'all'
+                ? tools
+                : tools.filter(tool => tool.type.includes(filter));
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                noResults.classList.add('show');
+                document.querySelector('.table-wrapper').style.display = 'none';
+                return;
+            }
+
+            noResults.classList.remove('show');
+            document.querySelector('.table-wrapper').style.display = '';
+
+            tbody.innerHTML = filtered.map(tool => `
+                <tr>
+                    <td class="tool-name">${tool.name}</td>
+                    <td class="company">${tool.company}</td>
+                    <td>
+                        <div class="type-badges">
+                            ${tool.type.map(t => `<span class="type-badge ${getTypeClass(t)}">${t}</span>`).join('')}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="model-tags">
+                            ${tool.features.map(f => `<span class="model-tag">${f}</span>`).join('')}
+                        </div>
+                    </td>
+                    <td class="limits">${tool.limits}</td>
+                    <td class="thoughts">${tool.thoughts}</td>
+                </tr>
+            `).join('');
+        }
+
+        document.querySelectorAll('.filters button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderTable(btn.dataset.filter);
+            });
+        });
+
+        renderTable();
+    </script>
+</body>
+
+</html>
